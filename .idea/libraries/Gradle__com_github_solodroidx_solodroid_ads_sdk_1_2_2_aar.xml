@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.solodroidx:solodroid-ads-sdk:1.2.2@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c4b8b3604154aef897d08d9ef733335b/transformed/jetified-solodroid-ads-sdk-1.2.2/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c4b8b3604154aef897d08d9ef733335b/transformed/jetified-solodroid-ads-sdk-1.2.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c4b8b3604154aef897d08d9ef733335b/transformed/jetified-solodroid-ads-sdk-1.2.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c4b8b3604154aef897d08d9ef733335b/transformed/jetified-solodroid-ads-sdk-1.2.2/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.solodroidx/solodroid-ads-sdk/1.2.2/129607024e46ed1b5972385c60ae08b8b56cdc05/solodroid-ads-sdk-1.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

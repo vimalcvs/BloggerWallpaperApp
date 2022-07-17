@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="item_post_padding_medium">14dp</dimen>
+    <dimen name="item_post_padding_small">7dp</dimen>
+    <dimen name="spacing_xsmall">4dp</dimen>
+    <dimen name="spacing_middle">10dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_xlarge">20dp</dimen>
+    <dimen name="spacing_xxlarge">40dp</dimen>
+
+    <dimen name="grid_space_wallpaper">4dp</dimen>
+
+    <dimen name="corner_radius">8dp</dimen>
+
+    <!--do not change this-->
+
+</resources>
