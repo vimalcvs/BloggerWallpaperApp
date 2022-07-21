@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/navigation_recent"
-        android:icon="@drawable/ic_nav_wallpaper"
+        android:icon="@android:drawable/ic_menu_gallery"
         android:title="@string/title_nav_recent" />
 
     <item
         android:id="@+id/navigation_category"
-        android:icon="@drawable/ic_nav_categories"
+        android:icon="@drawable/ic_no_content"
         android:title="@string/title_nav_category" />
 
     <item
         android:id="@+id/navigation_favorite"
-        android:icon="@drawable/ic_nav_favorite"
+        android:icon="@drawable/ic_menu_favorite_outline"
         android:title="@string/title_nav_favorite" />
 
 

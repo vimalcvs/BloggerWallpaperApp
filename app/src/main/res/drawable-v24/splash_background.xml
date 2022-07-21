@@ -1,0 +1,17 @@
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="?attr/colorPrimary" />
+
+    <item>
+
+        <bitmap
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/bg_splash"/>
+    </item>
+
+
+</layer-list>

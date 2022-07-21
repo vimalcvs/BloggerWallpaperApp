@@ -7,7 +7,7 @@
         android:id="@+id/view_native_ad"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackgroundDark"
+        android:background="@color/black"
         android:padding="@dimen/spacing_xlarge">
 
         <com.solodroid.ads.sdk.ui.LargeNativeAdView
@@ -20,7 +20,7 @@
         android:id="@+id/lyt_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackgroundDark">
+        android:background="@color/black">
 
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/image_view"
@@ -30,8 +30,9 @@
 
         <ProgressBar
             android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/progress_circle"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
             android:layout_centerInParent="true" />
 
     </RelativeLayout>

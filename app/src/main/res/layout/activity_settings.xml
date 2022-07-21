@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parent_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     android:orientation="vertical">
 
     <include
@@ -11,6 +13,12 @@
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/colorOnSurfaceInverse" />
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -40,19 +48,21 @@
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/title_setting_theme"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16.0sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:text="@string/sub_title_setting_theme" />
+                        android:text="@string/sub_title_setting_theme"
+                        android:textSize="14.0sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                 </LinearLayout>
 
@@ -76,19 +86,21 @@
                 android:orientation="vertical"
                 android:padding="@dimen/spacing_large">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_setting_display_wallpaper"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16.0sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_wallpaper_columns"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
+                    android:textSize="14.0sp"
+                    android:textColor="?attr/colorOnSurface"
                     android:text="" />
 
             </LinearLayout>
@@ -104,27 +116,29 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/spacing_large">
 
-                <LinearLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/title_setting_notification"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16.0sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface"/>
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
+                        android:textSize="14.0sp"
+                        android:textColor="?attr/colorOnSurface"
                         android:text="@string/sub_title_setting_notification" />
 
-                </LinearLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
             </RelativeLayout>
 
@@ -146,23 +160,25 @@
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/title_setting_clear_cache"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                        android:textSize="16sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="16.0sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_cache_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp" />
+                        android:layout_marginTop="3dp"
+                        android:textSize="14.0sp"
+                        android:textColor="?attr/colorOnSurface"/>
 
                 </LinearLayout>
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/btn_clear_cache"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
@@ -186,20 +202,22 @@
                 android:orientation="vertical"
                 android:padding="@dimen/spacing_large">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_setting_path"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16.0sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_path"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="14.0sp"
+                    android:textColor="?attr/colorOnSurface"/>
 
             </LinearLayout>
 
@@ -214,18 +232,20 @@
                 android:orientation="vertical"
                 android:padding="@dimen/spacing_large">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_setting_copyright"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16.0sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
+                    android:textSize="14.0sp"
+                    android:textColor="?attr/colorOnSurface"
                     android:text="@string/sub_title_setting_copyright" />
 
             </LinearLayout>
@@ -241,13 +261,13 @@
                 android:orientation="vertical"
                 android:padding="@dimen/spacing_large">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_setting_privacy"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16.0sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface" />
 
             </LinearLayout>
 
@@ -262,13 +282,13 @@
                 android:orientation="vertical"
                 android:padding="@dimen/spacing_large">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_setting_rate"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16.0sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface" />
 
             </LinearLayout>
 
@@ -283,13 +303,13 @@
                 android:orientation="vertical"
                 android:padding="@dimen/spacing_large">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_setting_more_apps"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16.0sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"/>
 
             </LinearLayout>
 
@@ -304,13 +324,13 @@
                 android:orientation="vertical"
                 android:padding="@dimen/spacing_large">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_setting_about"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16.0sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface" />
 
             </LinearLayout>
 

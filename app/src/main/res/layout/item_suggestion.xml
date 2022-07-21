@@ -9,22 +9,22 @@
     android:paddingLeft="@dimen/spacing_xsmall"
     android:paddingRight="@dimen/spacing_xsmall"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:focusable="true">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:padding="@dimen/spacing_large"
         android:src="@drawable/ic_history"
-        app:tint="#222222" />
+        app:tint="?attr/colorControlNormal" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"
         android:singleLine="true"
-        android:text="Text Suggestion"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+        android:text="@string/text_suggestion"/>
 
 </LinearLayout>

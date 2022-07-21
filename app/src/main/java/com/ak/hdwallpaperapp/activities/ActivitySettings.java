@@ -1,0 +1,261 @@
+package com.ak.hdwallpaperapp.activities;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.Settings;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+
+import com.ak.hdwallpaperapp.BuildConfig;
+import com.ak.hdwallpaperapp.R;
+import com.ak.hdwallpaperapp.database.prefs.SharedPref;
+import com.ak.hdwallpaperapp.utils.Constant;
+import com.ak.hdwallpaperapp.utils.SaveState;
+import com.ak.hdwallpaperapp.utils.Tools;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.switchmaterial.SwitchMaterial;
+
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.text.DecimalFormat;
+
+public class ActivitySettings extends AppCompatActivity {
+
+    SharedPref sharedPref;
+    LinearLayout parentView;
+    private String singleChoiceSelected;
+    ImageView btn_clear_cache;
+    TextView txt_cache_size;
+    TextView txt_path;
+    SaveState saveState;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+
+        saveState = new SaveState(this);
+        if (saveState.getState()){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else{
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
+
+        sharedPref = new SharedPref(this);
+
+        initView();
+        setupToolbar();
+    }
+
+    public void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    private void initView() {
+        parentView = findViewById(R.id.parent_view);
+
+      SwitchMaterial switchBtn = findViewById(R.id.switch_theme);
+        if (saveState.getState()){
+            switchBtn.setChecked(true);
+        }
+        switchBtn.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                saveState.setState(true);
+                getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }else{
+                saveState.setState(false);
+                getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+
+
+        final TextView txt_wallpaper_columns = findViewById(R.id.txt_wallpaper_columns);
+        if (sharedPref.getWallpaperColumns() == Constant.WALLPAPER_TWO_COLUMNS) {
+            txt_wallpaper_columns.setText(R.string.option_menu_wallpaper_2_columns);
+        } else if (sharedPref.getWallpaperColumns() == Constant.WALLPAPER_THREE_COLUMNS) {
+            txt_wallpaper_columns.setText(R.string.option_menu_wallpaper_3_columns);
+        }
+        findViewById(R.id.btn_wallpaper_columns).setOnClickListener(v -> {
+            String[] items = getResources().getStringArray(R.array.dialog_wallpaper_columns);
+
+            int itemSelected;
+            if (sharedPref.getWallpaperColumns() == Constant.WALLPAPER_THREE_COLUMNS) {
+                itemSelected = sharedPref.getDisplayPosition(1);
+                singleChoiceSelected = items[sharedPref.getDisplayPosition(1)];
+            } else {
+                itemSelected = sharedPref.getDisplayPosition(0);
+                singleChoiceSelected = items[sharedPref.getDisplayPosition(0)];
+            }
+
+            new AlertDialog.Builder(ActivitySettings.this)
+                    .setTitle(getString(R.string.title_setting_display_wallpaper))
+                    .setSingleChoiceItems(items, itemSelected, (dialogInterface, i) -> singleChoiceSelected = items[i])
+                    .setPositiveButton(R.string.dialog_option_ok, (dialogInterface, i) -> {
+                        if (singleChoiceSelected.equals(getResources().getString(R.string.option_menu_wallpaper_2_columns))) {
+                            if (sharedPref.getWallpaperColumns() != Constant.WALLPAPER_TWO_COLUMNS) {
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                sharedPref.updateWallpaperColumns(Constant.WALLPAPER_TWO_COLUMNS);
+                                txt_wallpaper_columns.setText(R.string.option_menu_wallpaper_2_columns);
+                            }
+                            sharedPref.updateDisplayPosition(0);
+                        } else if (singleChoiceSelected.equals(getResources().getString(R.string.option_menu_wallpaper_3_columns))) {
+                            if (sharedPref.getWallpaperColumns() != Constant.WALLPAPER_THREE_COLUMNS) {
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                sharedPref.updateWallpaperColumns(Constant.WALLPAPER_THREE_COLUMNS);
+                                txt_wallpaper_columns.setText(R.string.option_menu_wallpaper_3_columns);
+                            }
+                            sharedPref.updateDisplayPosition(1);
+                        }
+                        dialogInterface.dismiss();
+                    })
+                    .show();
+        });
+
+        findViewById(R.id.btn_notification).setOnClickListener(v -> {
+            Intent intent = new Intent();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+                intent.putExtra(Settings.EXTRA_APP_PACKAGE, BuildConfig.APPLICATION_ID);
+            } else {
+                intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+                intent.putExtra("app_package", BuildConfig.APPLICATION_ID);
+                intent.putExtra("app_uid", getApplicationInfo().uid);
+            }
+            startActivity(intent);
+        });
+
+        txt_cache_size = findViewById(R.id.txt_cache_size);
+        initializeCache();
+
+        txt_path = findViewById(R.id.txt_path);
+        String path;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            //noinspection deprecation
+            path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/" + getString(R.string.app_name);
+        } else {
+            path = Environment.getExternalStorageDirectory() + "/" + getString(R.string.app_name);
+        }
+        txt_path.setText(path);
+
+        btn_clear_cache = findViewById(R.id.btn_clear_cache);
+        btn_clear_cache.setOnClickListener(view -> clearCache());
+
+        findViewById(R.id.lyt_clear_cache).setOnClickListener(v -> clearCache());
+
+        findViewById(R.id.btn_privacy_policy).setOnClickListener(v -> Tools.openWebPage(this, getString(R.string.title_setting_privacy), sharedPref.getPrivacyPolicyUrl()
+        ));
+
+        findViewById(R.id.btn_rate).setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID))));
+
+        findViewById(R.id.btn_more).setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(sharedPref.getMoreAppsUrl()))));
+
+        findViewById(R.id.btn_about).setOnClickListener(v -> {
+            LayoutInflater layoutInflater = LayoutInflater.from(ActivitySettings.this);
+            View view = layoutInflater.inflate(R.layout.dialog_about, null);
+            TextView txtAppVersion = view.findViewById(R.id.txt_app_version);
+            txtAppVersion.setText(getString(R.string.msg_about_version) + " " + BuildConfig.VERSION_CODE + " (" + BuildConfig.VERSION_NAME + ")");
+            final AlertDialog.Builder alert = new AlertDialog.Builder(ActivitySettings.this);
+            alert.setView(view);
+            alert.setPositiveButton(R.string.dialog_option_ok, (dialog, which) -> dialog.dismiss());
+            alert.show();
+        });
+
+    }
+
+    private void clearCache() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(ActivitySettings.this);
+        dialog.setMessage(R.string.msg_clear_cache);
+        dialog.setPositiveButton(R.string.option_yes, (dialogInterface, i) -> {
+
+            FileUtils.deleteQuietly(getCacheDir());
+            FileUtils.deleteQuietly(getExternalCacheDir());
+
+            final ProgressDialog progressDialog = new ProgressDialog(ActivitySettings.this);
+            progressDialog.setTitle(R.string.msg_clearing_cache);
+            progressDialog.setMessage(getString(R.string.msg_please_wait));
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                txt_cache_size.setText(getString(R.string.sub_setting_clear_cache_start) + " 0 Bytes " + getString(R.string.sub_setting_clear_cache_end));
+                Snackbar.make(findViewById(android.R.id.content), getString(R.string.msg_cache_cleared), Snackbar.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }, 3000);
+
+        });
+        dialog.setNegativeButton(R.string.dialog_option_cancel, null);
+        dialog.show();
+    }
+
+    private void initializeCache() {
+        txt_cache_size.setText(getString(R.string.sub_setting_clear_cache_start) + " " + readableFileSize((0 + getDirSize(getCacheDir())) + getDirSize(getExternalCacheDir())) + " " + getString(R.string.sub_setting_clear_cache_end));
+    }
+
+    public long getDirSize(File dir) {
+        long size = 0;
+        for (File file : dir.listFiles()) {
+            if (file != null && file.isDirectory()) {
+                size += getDirSize(file);
+            } else if (file != null && file.isFile()) {
+                size += file.length();
+            }
+        }
+        return size;
+    }
+
+    public static String readableFileSize(long size) {
+        if (size <= 0) {
+            return "0 Bytes";
+        }
+        String[] units = new String[]{"Bytes", "KB", "MB", "GB", "TB"};
+        int digitGroups = (int) (Math.log10((double) size) / Math.log10(1024.0d));
+        StringBuilder stringBuilder = new StringBuilder();
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.#");
+        double d = (double) size;
+        double pow = Math.pow(1024.0d, digitGroups);
+        Double.isNaN(d);
+        stringBuilder.append(decimalFormat.format(d / pow));
+        stringBuilder.append(" ");
+        stringBuilder.append(units[digitGroups]);
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
+
+}

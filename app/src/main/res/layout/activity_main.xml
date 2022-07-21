@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
+    android:background="?attr/colorSurface"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,21 +16,28 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/tab_coordinator_layout"
             android:layout_width="match_parent"
+            android:background="?attr/colorPrimary"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/tab_appbar_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.AppBarOverlay">
+                android:background="?attr/colorPrimary"
+                android:layout_height="wrap_content">
 
-                <include
+                <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
-                    layout="@layout/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:contentInsetStartWithNavigation="0dp"
                     app:layout_scrollFlags="scroll|enterAlways" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?attr/colorOnSurfaceInverse" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -37,7 +46,7 @@
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <com.app.bloggerwallpaperapp.utils.RtlViewPager
+                <com.ak.hdwallpaperapp.utils.RtlViewPager
                     android:id="@+id/viewpager_rtl"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -70,16 +79,15 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@drawable/bg_shadow_top_gradient" />
+                android:background="?attr/colorOnSurfaceInverse" />
 
         </RelativeLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigation"
-            style="@style/MyBottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
+            android:background="?attr/colorPrimary"
             app:elevation="0dp" />
 
         <com.solodroid.ads.sdk.ui.BannerAdView

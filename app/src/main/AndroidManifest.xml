@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.app.bloggerwallpaperapp">
+    package="com.ak.hdwallpaperapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,7 +22,7 @@
         android:required="true" />
 
     <application
-        android:name="com.app.bloggerwallpaperapp.activities.MyApplication"
+        android:name="com.ak.hdwallpaperapp.activities.MyApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -31,8 +31,9 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/BaseTheme"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="n">
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -43,9 +44,10 @@
             android:value="@string/applovin_sdk_key" />
 
         <activity
-            android:name="com.app.bloggerwallpaperapp.activities.ActivitySplash"
+            android:name="com.ak.hdwallpaperapp.activities.ActivitySplash"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,7 +56,7 @@
         </activity>
 
         <activity
-            android:name="com.app.bloggerwallpaperapp.activities.MainActivity"
+            android:name="com.ak.hdwallpaperapp.activities.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true">
             <intent-filter>
@@ -65,30 +67,30 @@
         </activity>
 
         <activity
-            android:name="com.app.bloggerwallpaperapp.activities.ActivityCategoryDetail"
+            android:name="com.ak.hdwallpaperapp.activities.ActivityCategoryDetail"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name="com.app.bloggerwallpaperapp.activities.ActivitySearch"
+            android:name="com.ak.hdwallpaperapp.activities.ActivitySearch"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateVisible" />
         <activity
-            android:name="com.app.bloggerwallpaperapp.activities.ActivitySettings"
+            android:name="com.ak.hdwallpaperapp.activities.ActivitySettings"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name="com.app.bloggerwallpaperapp.activities.ActivityWebView"
+            android:name="com.ak.hdwallpaperapp.activities.ActivityWebView"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name="com.app.bloggerwallpaperapp.activities.ActivityWallpaperDetail"
+            android:name="com.ak.hdwallpaperapp.activities.ActivityWallpaperDetail"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name="com.app.bloggerwallpaperapp.activities.ActivityCropWallpaper"
+            android:name="com.ak.hdwallpaperapp.activities.ActivityCropWallpaper"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name="com.app.bloggerwallpaperapp.activities.ActivityNotificationDetail"
+            android:name="com.ak.hdwallpaperapp.activities.ActivityNotificationDetail"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <service
-            android:name="com.app.bloggerwallpaperapp.services.SetGIFAsWallpaperService"
+            android:name="com.ak.hdwallpaperapp.services.SetGIFAsWallpaperService"
             android:enabled="true"
             android:exported="true"
             android:label="@string/app_name"
@@ -114,7 +116,7 @@
         </provider>
 
         <service
-            android:name="com.app.bloggerwallpaperapp.notification.MyFirebaseMessageService"
+            android:name="com.ak.hdwallpaperapp.notification.MyFirebaseMessageService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -128,11 +130,11 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
+            android:resource="@color/seed" />
 
         <meta-data
             android:name="com.onesignal.NotificationServiceExtension"
-            android:value="com.app.bloggerwallpaperapp.notification.NotificationServiceExtension" />
+            android:value="com.ak.hdwallpaperapp.notification.NotificationServiceExtension" />
 
         <meta-data
             android:name="com.onesignal.NotificationOpened.DEFAULT"

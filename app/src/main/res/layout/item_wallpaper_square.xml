@@ -33,8 +33,9 @@
 
                 <ProgressBar
                     android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:indeterminateDrawable="@drawable/progress_circle"
+                    android:layout_width="40.0dip"
+                    android:layout_height="40.0dip"
                     android:layout_centerInParent="true" />
 
                 <FrameLayout
@@ -46,7 +47,7 @@
                     android:focusable="true"
                     android:foreground="?selectableItemBackground">
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/wallpaperImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -70,15 +71,14 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp">
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/wallpaperName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:text="Title"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                            android:textColor="@color/colorWhite"
+                            android:text="@string/app_name"
+                            android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 

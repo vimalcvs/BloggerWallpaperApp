@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/grid_space_wallpaper"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
     app:cardElevation="0dp"
     app:cardMaxElevation="0dp"
-    card_view:cardCornerRadius="@dimen/corner_radius"
-    card_view:cardPreventCornerOverlap="false">
+    card_view:cardCornerRadius="15dp"
+    card_view:cardPreventCornerOverlap="true">
 
     <LinearLayout
         android:id="@+id/lyt_parent"
@@ -17,7 +21,8 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:foreground="?selectableItemBackground"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UnusedAttribute">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,34 +36,33 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_alphabet"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@color/colorPrimary" />
+                    android:layout_height="match_parent" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_category"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorWhite"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#000000"
-                    android:alpha="0.15"/>
+                    android:alpha="0.15" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_label_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fontFamily="sans-serif-black"
                     android:gravity="center"
                     android:padding="6dp"
-                    android:text="Live Wallpaper"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="18sp"
+                    android:text="@string/live_wallpaper"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>

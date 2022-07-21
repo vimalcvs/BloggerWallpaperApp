@@ -1,43 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorSurface"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:background="@drawable/bg_circle"
         android:padding="10dp"
         android:src="@drawable/ic_check" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/msg_title_success"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/msgSuccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:gravity="center"
+        android:alpha="0.8"
+        android:textColor="?attr/colorSurfaceInverse"
         android:text="" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_done"
-        style="@style/MaterialButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:text="@string/btn_done"
-        android:textStyle="bold" />
+        android:foreground="?selectableItemBackground"
+        android:textStyle="bold"
+        app:backgroundTint="@color/seed"
+        tools:targetApi="m"
+        tools:ignore="UnusedAttribute" />
 
 </LinearLayout>
